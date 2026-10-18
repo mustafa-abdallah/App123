@@ -35,8 +35,8 @@ void main() {
     final id = await repo.create();
     await repo.save(id, title: 'x', body: 'y');
     await repo.softDelete(id);
-    expect(await repo.watchAll().first, isEmpty);
+    expect(await repo.watch(const NotesFilter()).first, isEmpty);
     await repo.restore(id);
-    expect((await repo.watchAll().first).length, 1);
+    expect((await repo.watch(const NotesFilter()).first).length, 1);
   });
 }
