@@ -3,9 +3,12 @@ import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();
 
+/// دالة عامة ليستطيع الكود المولَّد استخدامها.
+String newId() => _uuid.v4();
 /// أعمدة مشتركة: UUID + أوقات + حذف منطقي (تمهيدًا للمزامنة لاحقًا).
+
 mixin BaseColumns on Table {
-  TextColumn get id => text().clientDefault(() => _uuid.v4())();
+  TextColumn get id => text().clientDefault(newId)();
   DateTimeColumn get createdAt =>
       dateTime().clientDefault(() => DateTime.now())();
   DateTimeColumn get updatedAt =>
